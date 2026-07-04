@@ -1312,11 +1312,9 @@ const EXTRA_PLANS = [
 ];
 
 /* ===== TELEGRAM NOTIFICATIONS ===== */
-// ⬇️ ضع هنا Bot Token و Chat ID بتاعك
-// اعمل بوت من @BotFather على تليجرام وانسخ ال Token
-// ابعت رسالة للبوت وبعدين افتح: https://api.telegram.org/bot<TOKEN>/getUpdates عشان تجيب ال Chat ID
-const TELEGRAM_BOT_TOKEN = ''; // ضع ال Bot Token هنا
-const TELEGRAM_CHAT_ID = '';   // ضع ال Chat ID هنا
+// ⬇️ Bot Token و Chat ID
+const TELEGRAM_BOT_TOKEN = '8774050677:AAH0Fs_w4nv22WxjuT1Lya4fTEjm-r4U-RE';
+const TELEGRAM_CHAT_ID = '841248656';
 
 async function sendTelegramNotification(message) {
   if(!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
@@ -1334,7 +1332,6 @@ async function sendTelegramNotification(message) {
     console.error('Telegram notification error:', e);
   }
 }
-
 /* ===== DATA ===== */
 let clients = [];
 let editIndex = null;
