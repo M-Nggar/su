@@ -2095,7 +2095,35 @@ function buildClientExtraGrid() {
   });
 }
 
-/* ===== CONFIRM DIALOG ===== */\r\nfunction showConfirmDialog(title, message, onConfirm) {\r\n  // Remove any existing dialog\r\n  const existing = document.querySelector('.confirm-overlay');\r\n  if(existing) existing.remove();\r\n\r\n  const overlay = document.createElement('div');\r\n  overlay.className = 'confirm-overlay';\r\n  overlay.innerHTML = `\r\n    <div class=\"confirm-box\">\r\n      <div class=\"confirm-icon\">⚠️</div>\r\n      <div class=\"confirm-title\">${title}</div>\r\n      <div class=\"confirm-msg\">${message}</div>\r\n      <div class=\"confirm-actions\">\r\n        <button class=\"btn btn-danger btn-sm\" id=\"confirmYesBtn\">نعم، إلغاء</button>\r\n        <button class=\"btn btn-secondary btn-sm\" id=\"confirmNoBtn\">تراجع</button>\r\n      </div>\r\n    </div>\r\n  `;\r\n  document.body.appendChild(overlay);\r\n\r\n  // Close on backdrop click\r\n  overlay.addEventListener('click', e => {\r\n    if(e.target === overlay) overlay.remove();\r\n  });\r\n\r\n  document.getElementById('confirmNoBtn').onclick = () => overlay.remove();\r\n  document.getElementById('confirmYesBtn').onclick = () => {\r\n    overlay.remove();\r\n    onConfirm();\r\n  };\r\n}\r\n\r\n/* ===== LOGIN / AUTH ===== */
+/* ===== CONFIRM DIALOG ===== */
+function showConfirmDialog(title, message, onConfirm) {
+  const existing = document.querySelector('.confirm-overlay');
+  if(existing) existing.remove();
+  const overlay = document.createElement('div');
+  overlay.className = 'confirm-overlay';
+  overlay.innerHTML = `
+    <div class="confirm-box">
+      <div class="confirm-icon">⚠️</div>
+      <div class="confirm-title">${title}</div>
+      <div class="confirm-msg">${message}</div>
+      <div class="confirm-actions">
+        <button class="btn btn-danger btn-sm" id="confirmYesBtn">نعم، إلغاء</button>
+        <button class="btn btn-secondary btn-sm" id="confirmNoBtn">تراجع</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', e => {
+    if(e.target === overlay) overlay.remove();
+  });
+  document.getElementById('confirmNoBtn').onclick = () => overlay.remove();
+  document.getElementById('confirmYesBtn').onclick = () => {
+    overlay.remove();
+    onConfirm();
+  };
+}
+
+/* ===== LOGIN / AUTH ===== */
 const ADMIN_PASS  = '3199';
 
 function getClientPassword(landline) {
