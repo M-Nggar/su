@@ -951,6 +951,52 @@ textarea { min-height: 100px; resize: vertical; }
 .ri-type-plan { background: var(--primary-pale); color: var(--primary); }
 .ri-type-extra { background: var(--success-pale); color: var(--success); }
 
+/* ── CANCEL REQUEST BUTTON ── */
+.cancel-request-btn {
+  background: var(--danger-pale);
+  color: var(--danger);
+  border: 1.5px solid rgba(220,38,38,0.2);
+  border-radius: var(--radius-xs);
+  padding: 6px 14px;
+  font-weight: 800;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Cairo', sans-serif;
+  margin-top: 8px;
+}
+.cancel-request-btn:hover {
+  background: var(--danger);
+  color: #fff;
+  transform: scale(1.02);
+}
+
+/* ── CONFIRM DIALOG ── */
+.confirm-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.2s;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.confirm-box {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 28px;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: var(--shadow-xl);
+  text-align: center;
+  animation: slideUp 0.25s ease-out;
+}
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.confirm-box .confirm-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.confirm-box .confirm-title { font-weight: 900; font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+.confirm-box .confirm-msg { font-size: 0.88rem; color: var(--text-2); margin-bottom: 20px; line-height: 1.6; }
+.confirm-box .confirm-actions { display: flex; gap: 10px; justify-content: center; }
+.confirm-box .confirm-actions .btn { min-width: 100px; }
+
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
@@ -1042,9 +1088,10 @@ textarea { min-height: 100px; resize: vertical; }
   <!-- Pending Request Status -->
   <div class="pending-request-box" id="clientPendingRequest" style="display:none;">
     <div class="pri-icon">⏳</div>
-    <div>
+    <div style="flex:1;">
       <div class="pri-text">لديك طلب تغيير باقة قيد المراجعة</div>
       <div class="pri-plan" id="clientPendingPlan"></div>
+      <button class="cancel-request-btn" id="cancelPlanRequestBtn">❌ إلغاء الطلب</button>
     </div>
   </div>
 
@@ -1064,9 +1111,10 @@ textarea { min-height: 100px; resize: vertical; }
     <!-- Pending Extra Request -->
     <div class="pending-extra-box" id="clientPendingExtra" style="display:none;">
       <div class="pri-icon">⏳</div>
-      <div>
+      <div style="flex:1;">
         <div class="pri-text">لديك طلب باقة إضافية قيد المراجعة</div>
         <div class="pri-plan" id="clientPendingExtraPlan" style="color:var(--success);"></div>
+        <button class="cancel-request-btn" id="cancelExtraRequestBtn">❌ إلغاء الطلب</button>
       </div>
     </div>
     <div class="extra-grid" id="clientExtraGrid"></div>
@@ -1312,7 +1360,9 @@ const EXTRA_PLANS = [
 ];
 
 /* ===== TELEGRAM NOTIFICATIONS ===== */
-// ⬇️ Bot Token و Chat ID
+// ضع هنا Bot Token و Chat ID بتاعك
+// اعمل بوت من @BotFather على تليجرام وانسخ ال Token
+// ابعت رسالة للبوت وبعدين افتح: https://api.telegram.org/bot<TOKEN>/getUpdates عشان تجيب ال Chat ID
 const TELEGRAM_BOT_TOKEN = '8774050677:AAH0Fs_w4nv22WxjuT1Lya4fTEjm-r4U-RE';
 const TELEGRAM_CHAT_ID = '841248656';
 
@@ -1332,6 +1382,7 @@ async function sendTelegramNotification(message) {
     console.error('Telegram notification error:', e);
   }
 }
+
 /* ===== DATA ===== */
 let clients = [];
 let editIndex = null;
@@ -2044,8 +2095,8 @@ function buildClientExtraGrid() {
   });
 }
 
-/* ===== LOGIN / AUTH ===== */
-const ADMIN_PASS  = 'admin';
+/* ===== CONFIRM DIALOG ===== */\r\nfunction showConfirmDialog(title, message, onConfirm) {\r\n  // Remove any existing dialog\r\n  const existing = document.querySelector('.confirm-overlay');\r\n  if(existing) existing.remove();\r\n\r\n  const overlay = document.createElement('div');\r\n  overlay.className = 'confirm-overlay';\r\n  overlay.innerHTML = `\r\n    <div class=\"confirm-box\">\r\n      <div class=\"confirm-icon\">⚠️</div>\r\n      <div class=\"confirm-title\">${title}</div>\r\n      <div class=\"confirm-msg\">${message}</div>\r\n      <div class=\"confirm-actions\">\r\n        <button class=\"btn btn-danger btn-sm\" id=\"confirmYesBtn\">نعم، إلغاء</button>\r\n        <button class=\"btn btn-secondary btn-sm\" id=\"confirmNoBtn\">تراجع</button>\r\n      </div>\r\n    </div>\r\n  `;\r\n  document.body.appendChild(overlay);\r\n\r\n  // Close on backdrop click\r\n  overlay.addEventListener('click', e => {\r\n    if(e.target === overlay) overlay.remove();\r\n  });\r\n\r\n  document.getElementById('confirmNoBtn').onclick = () => overlay.remove();\r\n  document.getElementById('confirmYesBtn').onclick = () => {\r\n    overlay.remove();\r\n    onConfirm();\r\n  };\r\n}\r\n\r\n/* ===== LOGIN / AUTH ===== */
+const ADMIN_PASS  = '3199';
 
 function getClientPassword(landline) {
   if(!landline) return null;
@@ -2116,13 +2167,13 @@ function showClientApp(clientIdx) {
     save();
     const pl = PLANS.find(p=>p.value===clientSelectedPlan);
     toast('✅ تم إرسال طلب التغيير وسيتم مراجعته', 'success');
-    // Telegram notification
     sendTelegramNotification(
       `🔔 <b>طلب تغيير باقة</b>\n` +
       `📌 الكود: <b>${c.code}</b>\n` +
       `☎️ الأرضي: ${c.landline||'-'}\n` +
       `📦 الباقة الحالية: ${getPlanLabel(c.plan)}\n` +
-      `✨ الباقة المطلوبة: ${pl ? pl.label + ' — ' + pl.price : clientSelectedPlan}`
+      `✨ الباقة المطلوبة: ${pl ? pl.label + ' — ' + pl.price : clientSelectedPlan}\n` +
+      `📅 التجديد: يوم ${c.day || '-'}`
     );
     refreshClientView(clientIdx);
     clientSelectedPlan = null;
@@ -2138,19 +2189,69 @@ function showClientApp(clientIdx) {
     save();
     const ep = EXTRA_PLANS.find(p=>p.value===clientSelectedExtra);
     toast('✅ تم إرسال طلب الباقة الإضافية وسيتم مراجعته', 'success');
-    // Telegram notification
     sendTelegramNotification(
       `🔔 <b>طلب باقة إضافية</b>\n` +
       `📌 الكود: <b>${c.code}</b>\n` +
       `☎️ الأرضي: ${c.landline||'-'}\n` +
       `📦 الباقة الأساسية: ${getPlanLabel(c.plan)}\n` +
-      `➕ الإضافية المطلوبة: ${ep ? ep.label + (ep.gift ? ' ' + ep.gift : '') + ' — ' + ep.price : clientSelectedExtra}`
+      `➕ الإضافية المطلوبة: ${ep ? ep.label + (ep.gift ? ' ' + ep.gift : '') + ' — ' + ep.price : clientSelectedExtra}\n` +
+      `📅 التجديد: يوم ${c.day || '-'}`
     );
     refreshClientView(clientIdx);
     clientSelectedExtra = null;
     document.querySelectorAll('.extra-card').forEach(d=>d.classList.remove('chosen'));
     document.getElementById('clientRequestExtraBtn').disabled = true;
     document.getElementById('clientRequestExtraBtn').style.opacity = '0.5';
+  };
+
+  // ===== CANCEL PLAN REQUEST =====
+  document.getElementById('cancelPlanRequestBtn').onclick = () => {
+    const currentClient = clients[clientIdx];
+    if(!currentClient || !currentClient.requestedPlan) return;
+    const rp = PLANS.find(p => p.value === currentClient.requestedPlan);
+    showConfirmDialog(
+      'إلغاء طلب تغيير الباقة',
+      `هل أنت متأكد من إلغاء طلب التغيير إلى "${rp ? rp.label + ' — ' + rp.price : currentClient.requestedPlan}"?ُ`,
+      () => {
+        const cancelledPlan = currentClient.requestedPlan;
+        const cancelledLabel = rp ? rp.label + (rp.price ? ' — ' + rp.price : '') : cancelledPlan;
+        delete currentClient.requestedPlan;
+        save();
+        sendTelegramNotification(
+          `❌ <b>العميل ألغى الطلب</b>\n` +
+          `☎️ الأرضي: ${currentClient.landline||'-'}\n` +
+          `📦 الباقة الملغية: ${cancelledLabel}\n` +
+          `📅 التجديد: يوم ${currentClient.day || '-'}`
+        );
+        refreshClientView(clientIdx);
+        toast('تم إلغاء طلب تغيير الباقة', 'info');
+      }
+    );
+  };
+
+  // ===== CANCEL EXTRA REQUEST =====
+  document.getElementById('cancelExtraRequestBtn').onclick = () => {
+    const currentClient = clients[clientIdx];
+    if(!currentClient || !currentClient.requestedExtra) return;
+    const ep = EXTRA_PLANS.find(p => p.value === currentClient.requestedExtra);
+    showConfirmDialog(
+      'إلغاء طلب الباقة الإضافية',
+      `هل أنت متأكد من إلغاء طلب "${ep ? ep.label + (ep.gift ? ' ' + ep.gift : '') : currentClient.requestedExtra}"?`,
+      () => {
+        const cancelledExtra = currentClient.requestedExtra;
+        const cancelledLabel = ep ? ep.label + (ep.gift ? ' ' + ep.gift : '') + ' — ' + ep.price : cancelledExtra;
+        delete currentClient.requestedExtra;
+        save();
+        sendTelegramNotification(
+          `❌ <b>العميل ألغى طلب باقة إضافية</b>\n` +
+          `☎️ الأرضي: ${currentClient.landline||'-'}\n` +
+          `📦 الإضافية الملغية: ${cancelledLabel}\n` +
+          `📅 التجديد: يوم ${currentClient.day || '-'}`
+        );
+        refreshClientView(clientIdx);
+        toast('تم إلغاء طلب الباقة الإضافية', 'info');
+      }
+    );
   };
 }
 
