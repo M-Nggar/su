@@ -437,7 +437,7 @@ textarea { min-height: 90px; resize: vertical; }
 /* ─── LOGIN ─── */
 .login-wrap {
   min-height: 100vh; display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(-45deg, #1e1b4b, #312e81, #4f46e5, #6d28d9, #7c3aed, #0ea5e9);
+  background: linear-gradient(-45deg, #130922, #18203f, #1a2c4e, #2e1d4a);
   background-size: 300% 300%; animation: gradAnim 12s ease infinite;
   padding: 20px; position: fixed; inset: 0; z-index: 9000; transition: opacity 0.4s;
 }
@@ -445,18 +445,18 @@ textarea { min-height: 90px; resize: vertical; }
 @keyframes gradAnim { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
 
 .login-box {
-  background: rgba(255,255,255,0.1); backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.18); border-radius: 24px;
+  background: rgba(255,255,255,0.05); backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 24px;
   padding: 40px 34px; width: 100%; max-width: 400px;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.3); text-align: center;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.4); text-align: center;
   animation: modalSlide 0.4s ease;
 }
 .login-logo-big {
   width: 70px; height: 70px; border-radius: 20px;
-  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
   display: flex; align-items: center; justify-content: center;
-  font-size: 2rem; color: #fff; margin: 0 auto 18px;
+  font-size: 2rem; color: #fff; margin: 0 auto 18px; box-shadow: 0 0 20px rgba(255,255,255,0.1);
 }
 .login-box h2 { font-size: 1.5rem; font-weight: 900; color: #fff; margin-bottom: 5px; }
 .login-box .login-sub { color: rgba(255,255,255,0.65); font-size: 0.86rem; margin-bottom: 28px; }
@@ -467,115 +467,134 @@ textarea { min-height: 90px; resize: vertical; }
 }
 .login-input-wrap { position: relative; }
 .login-input-wrap > i {
-  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
   color: rgba(255,255,255,0.35); font-size: 1.1rem;
 }
 .login-field input {
-  width: 100%; padding: 13px 40px 13px 14px;
+  width: 100%; padding: 13px 14px 13px 40px;
   border: 1.5px solid rgba(255,255,255,0.18); border-radius: var(--radius-xs);
   background: rgba(255,255,255,0.07); font-family: 'Cairo', sans-serif;
   font-size: 0.92rem; color: #fff; transition: all 0.2s;
 }
 .login-field input::placeholder { color: rgba(255,255,255,0.3); }
 .login-field input:focus {
-  outline: none; border-color: rgba(255,255,255,0.45);
-  box-shadow: 0 0 0 3px rgba(255,255,255,0.1); background: rgba(255,255,255,0.1);
+  outline: none; border-color: rgba(124,58,237,0.7);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.3); background: rgba(255,255,255,0.12);
 }
 .login-btn-main {
-  width: 100%; padding: 13px; background: rgba(255,255,255,0.16);
-  border: 1.5px solid rgba(255,255,255,0.22); color: #fff;
+  width: 100%; padding: 13px; background: linear-gradient(135deg, #7c3aed, #6366f1);
+  border: none; color: #fff;
   border-radius: var(--radius-xs); font-family: 'Cairo', sans-serif;
   font-size: 0.95rem; font-weight: 800; cursor: pointer; margin-top: 8px;
   transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 7px;
+  box-shadow: 0 4px 16px rgba(124,58,237,0.4);
 }
-.login-btn-main:hover { background: rgba(255,255,255,0.25); transform: translateY(-1px); }
+.login-btn-main:hover { background: linear-gradient(135deg, #8b5cf6, #818cf8); box-shadow: 0 6px 20px rgba(124,58,237,0.6); transform: translateY(-1px); }
 .login-btn-main:active { transform: translateY(0); }
 .login-hint { margin-top: 18px; font-size: 0.78rem; color: rgba(255,255,255,0.4); line-height: 1.6; }
 
 /* ─── CLIENT DASHBOARD ─── */
-#clientApp { display: none; max-width: 700px; margin: 0 auto; }
+#clientApp {
+  display: none; background: #f8f9fa; min-height: 100vh;
+  margin: -16px; padding-bottom: 40px; color: #1a202c;
+  font-family: 'Cairo', sans-serif;
+  direction: rtl; /* Arabic RTL Layout */
+}
 .client-topbar {
-  background: linear-gradient(135deg, var(--primary), #7c3aed);
-  border-radius: var(--radius); padding: 20px 24px; margin-bottom: 18px;
-  display: flex; align-items: center; gap: 14px;
-  box-shadow: 0 6px 24px var(--primary-glow); color: #fff;
+  background: linear-gradient(135deg, #3730a3, #7c3aed, #a855f7);
+  color: #ffffff; padding: 32px 32px 64px;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  border-radius: 0 0 24px 24px;
 }
-.client-topbar .logo { background: rgba(255,255,255,0.18); box-shadow: none; }
-.client-topbar .title h1 { color: #fff; }
-.client-topbar .title p { color: rgba(255,255,255,0.75); }
-.client-topbar .header-actions { margin-right: auto; }
+.client-topbar-left { display: flex; flex-direction: column; gap: 4px; }
+.client-topbar .title { font-size: 1.6rem; font-weight: 900; letter-spacing: 0px; margin-bottom: 0px; }
+.client-topbar .subtitle { font-size: 0.9rem; opacity: 0.85; font-weight: 600; }
+.client-topbar-right { display: flex; align-items: center; gap: 16px; font-size: 0.95rem; }
+.client-logout-btn {
+  background: #ffffff; color: #1e293b; font-family: 'Cairo', sans-serif; font-weight: 800;
+  padding: 8px 18px; border-radius: 8px; border: none; cursor: pointer;
+  display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.2s;
+}
+.client-logout-btn i { color: #7c3aed; font-size: 1.1rem; }
+.client-logout-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
 
-.client-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 18px; }
-.ccard {
-  background: var(--bg-card); border-radius: var(--radius); padding: 18px;
-  border: 1px solid var(--border); box-shadow: var(--shadow-xs);
-  display: flex; align-items: center; gap: 12px; transition: all 0.2s;
+.client-container { max-width: 1100px; margin: -40px auto 0; padding: 0 24px; position: relative; z-index: 10; }
+.c-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+.c-stat-card {
+  background: #ffffff; border-radius: 12px; padding: 18px; display: flex;
+  align-items: center; gap: 16px; box-shadow: 0 6px 16px rgba(0,0,0,0.06); border: none;
 }
-.ccard:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
-.ccard-icon {
-  width: 48px; height: 48px; border-radius: 13px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; flex-shrink: 0;
+.c-stat-icon {
+  width: 44px; height: 44px; background: rgba(124,58,237,0.08); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+  color: #7c3aed;
 }
-.ci-blue{background:var(--primary-pale);color:var(--primary)}
-.ci-green{background:var(--success-pale);color:var(--success)}
-.ci-orange{background:var(--warning-pale);color:var(--warning)}
-.ci-purple{background:rgba(124,58,237,0.08);color:#7c3aed}
-.ccard-label { font-size: 0.8rem; color: var(--text-3); font-weight: 700; }
-.ccard-value { font-size: 1.05rem; font-weight: 900; color: var(--text); margin-top: 2px; }
+.c-stat-info { display: flex; flex-direction: column; }
+.c-stat-label { font-size: 0.8rem; color: #64748b; font-weight: 700; margin-bottom: 2px; }
+.c-stat-value { font-size: 1.05rem; font-weight: 800; color: #1e293b; }
 
-.client-notes-section, .client-plan-section, .client-edit-section, .extra-section {
-  background: var(--bg-card); border-radius: var(--radius); padding: 18px;
-  border: 1px solid var(--border); box-shadow: var(--shadow-xs); margin-bottom: 18px;
+.c-section-title { font-size: 1.15rem; font-weight: 800; color: #1e293b; margin-bottom: 12px; }
+.c-notes-panel {
+  background: #ffffff; border-radius: 10px; padding: 16px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; align-items: flex-start; gap: 12px; margin-bottom: 32px; border: 1px solid rgba(0,0,0,0.03);
 }
-.client-notes-section h3, .client-plan-section h3, .client-edit-section h3, .extra-section h3 {
-  font-size: 0.95rem; font-weight: 900; color: var(--primary);
-  margin-bottom: 12px; display: flex; align-items: center; gap: 7px;
-}
-.notes-box {
-  background: var(--bg-raised); border: 1.5px solid var(--border); border-radius: var(--radius-sm);
-  padding: 12px; font-size: 0.88rem; color: var(--text-2); min-height: 60px;
-  line-height: 1.7; white-space: pre-wrap;
-}
-.notes-box.empty { color: var(--text-3); font-style: italic; }
-.edit-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.c-notes-panel i { font-size: 1.2rem; color: #64748b; margin-top: 2px; }
+.c-notes-list { list-style: none; padding: 0; margin: 0; flex: 1; }
+.c-notes-list li { color: #334155; font-size: 0.9rem; font-weight: 700; padding: 4px 0; }
+.c-notes-list.empty { color: #94a3b8; font-style: italic; font-weight: 600; }
 
-/* ── EXTRA CARDS ── */
-.extra-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 14px; }
-.extra-card {
-  border: 2px solid var(--border); border-radius: var(--radius-sm);
-  padding: 12px; cursor: pointer; transition: all 0.2s;
-  background: var(--bg-raised); text-align: center; position: relative;
-}
-.extra-card:hover { border-color: var(--success); background: var(--success-pale); transform: translateY(-2px); }
-.extra-card.chosen { border-color: var(--success); background: var(--success-pale); box-shadow: 0 0 0 3px rgba(16,185,129,0.15); }
-.extra-card .ename { font-weight: 800; color: var(--text); font-size: 0.88rem; }
-.extra-card .egift { font-size: 0.76rem; color: var(--success); font-weight: 700; margin-top: 2px; }
-.extra-card .eprice { font-weight: 900; color: var(--primary); font-size: 0.95rem; margin-top: 4px; }
-.extra-card .echeck { display: none; position: absolute; top: 6px; left: 6px; color: var(--success); }
-.extra-card.chosen .echeck { display: block; }
+.c-plans-wrapper { display: flex; flex-direction: column; gap: 40px; margin-bottom: 32px; }
+.c-plans-wrapper > .c-plan-col { flex: 1; min-width: 0; }
+.c-plan-col h3 { font-size: 1.15rem; color: #1e293b; font-weight: 800; margin-bottom: 4px; }
+.c-plan-col p.sub { font-size: 0.85rem; color: #64748b; margin-bottom: 16px; font-weight: 700; }
+.c-plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
 
-/* ── PENDING/REQUEST ── */
-.pending-request-box {
-  background: var(--warning-pale); border: 1.5px solid rgba(245,158,11,0.25);
-  border-radius: var(--radius-sm); padding: 12px; margin-bottom: 14px;
-  display: flex; align-items: center; gap: 10px;
+.c-plan-card {
+  background: #ffffff; border: 2px solid transparent; border-radius: 12px; padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04); display: flex; flex-direction: column;
+  transition: all 0.2s; cursor: pointer;
 }
-.pending-extra-box {
-  background: var(--info-pale); border: 1.5px solid rgba(14,165,233,0.25);
-  border-radius: var(--radius-sm); padding: 12px; margin-bottom: 14px;
-  display: flex; align-items: center; gap: 10px;
+.c-plan-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-color: rgba(124,58,237,0.3); }
+.c-plan-card.chosen { border-color: #7c3aed; box-shadow: 0 0 0 2px rgba(124,58,237,0.2); }
+
+.c-plan-name { font-size: 0.85rem; font-weight: 800; color: #1e293b; margin-bottom: 4px; }
+.c-plan-price-row { display: flex; align-items: baseline; gap: 4px; margin-bottom: 16px; }
+.c-plan-price { font-size: 1.5rem; font-weight: 900; color: #1e293b; }
+.c-plan-mo { font-size: 0.8rem; color: #64748b; font-weight: 700; }
+
+.c-plan-features { font-size: 0.82rem; color: #475569; line-height: 1.8; margin-bottom: 20px; flex: 1; font-weight: 600; }
+.c-plan-features div { display: flex; align-items: center; gap: 6px; }
+.c-plan-features div i { color: #10b981; font-size: 0.95rem; }
+
+.c-plan-btn {
+  width: 100%; padding: 10px; background: #7c3aed; color: #ffffff; border: none;
+  border-radius: 8px; font-size: 0.9rem; font-family: 'Cairo', sans-serif; font-weight: 800; cursor: pointer; transition: background 0.2s;
 }
-.pri-icon { font-size: 1.4rem; }
-.pri-text { font-size: 0.86rem; color: var(--text-2); font-weight: 700; }
-.pri-plan { color: var(--primary); font-weight: 900; }
-.cancel-request-btn {
-  background: var(--danger-pale); color: var(--danger);
-  border: 1px solid rgba(239,68,68,0.15); border-radius: 6px;
-  padding: 5px 12px; font-weight: 700; font-size: 0.8rem;
-  cursor: pointer; transition: all 0.2s; font-family: 'Cairo', sans-serif; margin-top: 6px;
-}
-.cancel-request-btn:hover { background: var(--danger); color: #fff; }
+.c-plan-btn:hover { background: #6d28d9; }
+.c-plan-btn:disabled { background: #cbd5e1; cursor: not-allowed; }
+.extra-card-style { border-color: transparent; }
+.extra-card-style:hover { border-color: rgba(16, 185, 129, 0.3); box-shadow: 0 8px 20px rgba(16, 185, 129, 0.1); }
+.extra-card-style.chosen { border-color: #10b981; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); }
+.extra-card-style .c-plan-btn { background: #10b981; }
+.extra-card-style .c-plan-btn:hover { background: #059669; }
+
+.c-edit-section { background: #ffffff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 30px; }
+.c-edit-form { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+.c-edit-group { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 200px; }
+.c-edit-group label { font-size: 0.85rem; color: #1e293b; font-weight: 800; }
+.c-edit-group input { padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-family: 'Cairo', sans-serif; font-size: 0.9rem; background: #ffffff; transition: border 0.2s; font-weight: 600;}
+.c-edit-group input:focus { outline: none; border-color: #7c3aed; }
+.c-edit-save { padding: 11px 24px; background: #7c3aed; color: #ffffff; border: none; border-radius: 8px; font-family: 'Cairo', sans-serif; font-size: 0.9rem; font-weight: 800; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(124,58,237,0.2); }
+.c-edit-save:hover { background: #6d28d9; transform: translateY(-1px); }
+
+.c-alert { background: #fffaf0; border: 1.5px solid #fbd38d; border-radius: 8px; padding: 14px 18px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+.c-alert.info-alert { background: #f0f9ff; border: 1.5px solid #bae6fd; }
+.c-alert-text { font-size: 0.9rem; color: #dd6b20; font-weight: 800; font-family: 'Cairo', sans-serif; }
+.info-alert .c-alert-text { color: #0284c7; }
+.c-alert-cancel { background: #fff; border: 1px solid #fbd38d; color: #dd6b20; font-family: 'Cairo', sans-serif; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 800; cursor: pointer; }
+.c-alert-cancel:hover { background: #fffaf0; }
+.info-alert .c-alert-cancel { border-color: #bae6fd; color: #0284c7; }
+.info-alert .c-alert-cancel:hover { background: #f0f9ff; }
 
 .req-badge { position: relative; }
 .req-badge .badge-count {
@@ -671,8 +690,8 @@ textarea { min-height: 90px; resize: vertical; }
   .stats{grid-template-columns:1fr 1fr} .form-grid{grid-template-columns:1fr}
   .header-top{flex-wrap:wrap} .title h1{font-size:1.2rem} body{padding:10px}
   .stat-value{font-size:1.5rem} .modal-content{padding:18px}
-  .client-cards{grid-template-columns:1fr} .plan-grid{grid-template-columns:1fr}
-  .edit-form-grid{grid-template-columns:1fr} .extra-grid{grid-template-columns:1fr}
+  .c-stats-grid{grid-template-columns:1fr} .c-plans-wrapper{grid-template-columns:1fr}
+  .c-plan-grid{grid-template-columns:1fr} .c-edit-form{flex-direction:column;align-items:stretch}
   .login-box{padding:28px 18px} .history-timeline{padding-right:26px}
 }
 </style>
@@ -712,36 +731,62 @@ textarea { min-height: 90px; resize: vertical; }
 </div>
 
 <!-- CLIENT -->
-<div id="clientApp">
+<div id="clientApp" dir="rtl">
   <div class="client-topbar">
-    <div class="logo"><i class="ri-user-3-line" style="font-size:1.4rem;"></i></div>
-    <div class="title"><h1>مرحباً بك</h1><p id="clientWelcomeName">عزيزي العميل</p></div>
-    <div class="header-actions">
-      <button class="btn btn-sm" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.22);" id="clientLogoutBtn"><i class="ri-logout-box-r-line"></i> خروج</button>
+    <div class="client-topbar-left">
+      <div class="title" id="clientWelcomeName">مرحباً بك، العميل</div>
+    </div>
+    <div class="client-topbar-right">
+      <button class="client-logout-btn" id="clientLogoutBtn"><i class="ri-logout-box-r-line"></i> خروج</button>
     </div>
   </div>
-  <div class="client-cards">
-    <div class="ccard"><div class="ccard-icon ci-blue"><i class="ri-box-3-line"></i></div><div><div class="ccard-label">باقتك الحالية</div><div class="ccard-value" id="clientPlan">-</div></div></div>
-    <div class="ccard"><div class="ccard-icon ci-green"><i class="ri-calendar-line"></i></div><div><div class="ccard-label">يوم التجديد</div><div class="ccard-value" id="clientDay">-</div></div></div>
-    <div class="ccard"><div class="ccard-icon ci-orange"><i class="ri-phone-line"></i></div><div><div class="ccard-label">رقم الأرضي</div><div class="ccard-value" id="clientLandline">-</div></div></div>
-    <div class="ccard"><div class="ccard-icon ci-purple"><i class="ri-hashtag"></i></div><div><div class="ccard-label">رمز العميل</div><div class="ccard-value" id="clientCode">-</div></div></div>
-  </div>
-  <div class="client-notes-section"><h3><i class="ri-file-text-line"></i> ملاحظات</h3><div class="notes-box" id="clientNotesBox">لا توجد ملاحظات</div></div>
-  <div class="pending-request-box" id="clientPendingRequest" style="display:none;">
-    <div class="pri-icon"><i class="ri-time-line" style="color:var(--warning);"></i></div>
-    <div style="flex:1;"><div class="pri-text">لديك طلب تغيير باقة قيد المراجعة</div><div class="pri-plan" id="clientPendingPlan"></div><button class="cancel-request-btn" id="cancelPlanRequestBtn"><i class="ri-close-line"></i> إلغاء الطلب</button></div>
-  </div>
-  <div class="client-plan-section"><h3><i class="ri-refresh-line"></i> طلب تغيير الباقة</h3><p style="color:var(--text-2);font-size:0.86rem;margin-bottom:14px;">اختر الباقة المناسبة وسيتم مراجعة طلبك تلقائياً</p><div class="plan-grid" id="clientPlanGrid"></div><button class="btn btn-primary" id="clientRequestPlanBtn" disabled style="opacity:0.5;"><i class="ri-send-plane-line"></i> إرسال طلب التغيير</button></div>
-  <div class="extra-section"><h3><i class="ri-add-circle-line"></i> طلب باقة إضافية</h3><p style="color:var(--text-2);font-size:0.86rem;margin-bottom:4px;">اختر باقة إضافية لزيادة سعة الإنترنت</p><p style="color:var(--success);font-size:0.78rem;font-weight:700;margin-bottom:14px;"><i class="ri-sparkling-line"></i> الأسعار شاملة الضريبة</p>
-    <div class="pending-extra-box" id="clientPendingExtra" style="display:none;"><div class="pri-icon"><i class="ri-time-line" style="color:var(--info);"></i></div><div style="flex:1;"><div class="pri-text">لديك طلب باقة إضافية قيد المراجعة</div><div class="pri-plan" id="clientPendingExtraPlan" style="color:var(--success);"></div><button class="cancel-request-btn" id="cancelExtraRequestBtn"><i class="ri-close-line"></i> إلغاء الطلب</button></div></div>
-    <div class="extra-grid" id="clientExtraGrid"></div><button class="btn btn-success" id="clientRequestExtraBtn" disabled style="opacity:0.5;"><i class="ri-send-plane-line"></i> طلب الباقة الإضافية</button>
-  </div>
-  <div class="client-edit-section"><h3><i class="ri-pencil-line"></i> تعديل بياناتي</h3>
-    <div class="edit-form-grid">
-      <div class="form-group"><label><i class="ri-smartphone-line"></i> رقم الموبايل</label><input type="tel" id="clientEditMobile" placeholder="01012345678"></div>
-      <div class="form-group"><label><i class="ri-calendar-line"></i> يوم التجديد</label><input type="number" id="clientEditDay" min="1" max="31"></div>
+  <div class="client-container">
+    <div class="c-stats-grid">
+      <div class="c-stat-card"><div class="c-stat-icon"><i class="ri-speed-up-line"></i></div><div class="c-stat-info"><div class="c-stat-label">باقتك الحالية</div><div class="c-stat-value" id="clientPlan">-</div></div></div>
+      <div class="c-stat-card"><div class="c-stat-icon"><i class="ri-calendar-event-line"></i></div><div class="c-stat-info"><div class="c-stat-label">يوم التجديد</div><div class="c-stat-value" id="clientDay">-</div></div></div>
+      <div class="c-stat-card"><div class="c-stat-icon"><i class="ri-phone-line"></i></div><div class="c-stat-info"><div class="c-stat-label">رقم الأرضي</div><div class="c-stat-value" id="clientLandline">-</div></div></div>
+      <div class="c-stat-card"><div class="c-stat-icon"><i class="ri-user-line"></i></div><div class="c-stat-info"><div class="c-stat-label">رمز العميل</div><div class="c-stat-value" id="clientCode">-</div></div></div>
     </div>
-    <button class="btn btn-success" id="clientSaveEditBtn"><i class="ri-save-line"></i> حفظ التعديلات</button>
+    
+    <div class="c-section-title">إضافة ملاحظة مع الطلب</div>
+    <div style="margin-bottom: 24px;">
+      <textarea id="clientRequestNote" placeholder="اكتب ملاحظتك هنا قبل اختيار الباقة أو الإضافة (اختياري)..." style="width: 100%; min-height: 80px; padding: 12px; border: 1.5px solid #e2e8f0; border-radius: 12px; font-family: 'Cairo', sans-serif; font-size: 0.95rem; background: #ffffff; resize: vertical; box-shadow: 0 2px 8px rgba(0,0,0,0.02);"></textarea>
+    </div>
+
+    <div class="c-alert" id="clientPendingRequest" style="display:none;">
+      <div><div class="c-alert-text">طلب تغيير الباقة قيد المراجعة</div><div style="font-size:0.85rem;color:#718096;font-weight:700;margin-top:2px;" id="clientPendingPlan"></div></div>
+      <button class="c-alert-cancel" id="cancelPlanRequestBtn">إلغاء الطلب</button>
+    </div>
+    
+    <div class="c-alert info-alert" id="clientPendingExtra" style="display:none;">
+      <div><div class="c-alert-text">طلب باقة إضافية قيد المراجعة</div><div style="font-size:0.85rem;color:#4a5568;font-weight:700;margin-top:2px;" id="clientPendingExtraPlan"></div></div>
+      <button class="c-alert-cancel" id="cancelExtraRequestBtn">إلغاء الطلب</button>
+    </div>
+
+    <div class="c-plans-wrapper">
+      <div class="c-plan-col">
+        <h3>تغيير الباقة</h3>
+        <p class="sub">اختر الباقة المناسبة لاستخدامك المتميز.</p>
+        <div class="c-plan-grid" id="clientPlanGrid"></div>
+      </div>
+      <div class="c-plan-col">
+        <h3>باقات إضافية</h3>
+        <p class="sub">باقات مصممة خصيصاً لراحتك.</p>
+        <div class="c-plan-grid" id="clientExtraGrid"></div>
+      </div>
+    </div>
+    <!-- Hidden original buttons to keep JS working -->
+    <button id="clientRequestPlanBtn" style="display:none;"></button>
+    <button id="clientRequestExtraBtn" style="display:none;"></button>
+
+    <div class="c-section-title">تعديل البيانات</div>
+    <div class="c-edit-section">
+      <div class="c-edit-form">
+        <div class="c-edit-group"><label>رقم الموبايل</label><input type="tel" id="clientEditMobile" placeholder="مثال: 01012345678"></div>
+        <div class="c-edit-group"><label>يوم التجديد</label><input type="number" id="clientEditDay" min="1" max="31"></div>
+        <button class="c-edit-save" id="clientSaveEditBtn">حفظ التعديلات</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -863,6 +908,7 @@ const EXTRA_PLANS=[
 const TELEGRAM_BOT_TOKEN='8774050677:AAH0Fs_w4nv22WxjuT1Lya4fTEjm-r4U-RE';
 const TELEGRAM_CHAT_ID='841248656';
 async function sendTG(msg){if(!TELEGRAM_BOT_TOKEN||!TELEGRAM_CHAT_ID)return;try{await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TELEGRAM_CHAT_ID,text:msg,parse_mode:'HTML'})})}catch(e){console.error(e)}}
+async function sendBotMsg(chatId,text){if(!TELEGRAM_BOT_TOKEN||!chatId)return;try{await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:chatId,text:text,parse_mode:'HTML'})})}catch(e){console.error(e)}}
 
 let clients=[],editIndex=null,sortColumn='day_smart',sortDirection='asc';
 const SK='sub_support_v3',EMP_WA='201010747423';
@@ -872,7 +918,7 @@ function save(){dataRef.set({clients:JSON.parse(JSON.stringify(clients))},{merge
 async function load(){try{const doc=await dataRef.get();if(doc.exists&&doc.data().clients&&doc.data().clients.length>0){clients=doc.data().clients;firestoreReady=true}else{let d=localStorage.getItem(SK)||localStorage.getItem('sub_support_v2');clients=d?JSON.parse(d):[];if(clients.length>0)await dataRef.set({clients:JSON.parse(JSON.stringify(clients))});firestoreReady=true}}catch(e){console.error(e);let d=localStorage.getItem(SK);clients=d?JSON.parse(d):[]}try{localStorage.setItem(SK,JSON.stringify(clients))}catch(e){}}
 function startSync(){dataRef.onSnapshot(s=>{if(s.exists&&s.data().clients){clients=s.data().clients;try{localStorage.setItem(SK,JSON.stringify(clients))}catch(e){}render();updateSelUI();updateReqBadge();const r=localStorage.getItem('currentRole');if(r==='client'){const i=parseInt(localStorage.getItem('currentClientIdx'));if(!isNaN(i)&&clients[i])refreshCV(i)}}},e=>console.error(e))}
 
-function refreshCV(i){const c=clients[i];if(!c)return;document.getElementById('clientWelcomeName').textContent=c.landline?`أرضي: ${c.landline}`:`كود: ${c.code}`;document.getElementById('clientPlan').textContent=planLbl(c.plan);document.getElementById('clientDay').textContent=c.day?`${c.day} من كل شهر`:'غير محدد';document.getElementById('clientLandline').textContent=c.landline||'-';document.getElementById('clientCode').textContent=c.code||'-';const nb=document.getElementById('clientNotesBox');if(c.notes&&c.notes.trim()){nb.textContent=c.notes;nb.classList.remove('empty')}else{nb.textContent='لا توجد ملاحظات حالياً';nb.classList.add('empty')}const pr=document.getElementById('clientPendingRequest');if(c.requestedPlan){const rp=PLANS.find(p=>p.value===c.requestedPlan);document.getElementById('clientPendingPlan').textContent=rp?`${rp.label} — ${rp.price}`:c.requestedPlan;pr.style.display='flex'}else{pr.style.display='none'}const pe=document.getElementById('clientPendingExtra');if(c.requestedExtra){const ep=EXTRA_PLANS.find(p=>p.value===c.requestedExtra);document.getElementById('clientPendingExtraPlan').textContent=ep?`${ep.label}${ep.gift?' '+ep.gift:''} — ${ep.price}`:c.requestedExtra;pe.style.display='flex'}else{pe.style.display='none'}}
+function refreshCV(i){const c=clients[i];if(!c)return;document.getElementById('clientWelcomeName').textContent=`مرحباً بك، ${c.code}`;document.getElementById('clientPlan').textContent=planLbl(c.plan).split(' — ')[0]||'-';document.getElementById('clientDay').textContent=c.day?`${c.day} من كل شهر`:'-';document.getElementById('clientLandline').textContent=c.landline||'-';document.getElementById('clientCode').textContent=c.code||'-';const pr=document.getElementById('clientPendingRequest');if(c.requestedPlan){const rp=PLANS.find(p=>p.value===c.requestedPlan);document.getElementById('clientPendingPlan').textContent=rp?`${rp.label} — ${rp.price}`:c.requestedPlan;pr.style.display='flex'}else{pr.style.display='none'}const pe=document.getElementById('clientPendingExtra');if(c.requestedExtra){const ep=EXTRA_PLANS.find(p=>p.value===c.requestedExtra);document.getElementById('clientPendingExtraPlan').textContent=ep?`${ep.label}${ep.gift?' '+ep.gift:''} — ${ep.price}`:c.requestedExtra;pe.style.display='flex'}else{pe.style.display='none'}}
 
 function genCode(){return'C-'+Math.floor(1000+Math.random()*8999)}
 function esc(t){if(t==null)return'';return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
@@ -897,7 +943,7 @@ function autoSel(silent=false){const t=new Date().getDate();let n=0;clients.forE
 function selectToday(){const t=new Date().getDate();selectedClients.clear();let n=0;clients.forEach((c,i)=>{if(parseInt(c.day,10)===t){selectedClients.add(i);n++}});if(n===0){toast('لا يوجد عملاء اليوم','warning');return}updateSelUI();render();toast(`تم تحديد ${n} عميل اليوم`,'success')}
 
 function render(){const tbody=document.getElementById('tableBody'),search=document.getElementById('searchInput').value.toLowerCase().trim();let f=clients.map((c,i)=>({...c,_i:i})).filter(c=>{if(!search)return true;return(c.code||'').toLowerCase().includes(search)||(c.mobile||'').toLowerCase().includes(search)||(c.landline||'').toLowerCase().includes(search)});f.sort((a,b)=>{let va,vb;if(sortColumn==='day'||sortColumn==='day_smart'){va=smartDay(a.day);vb=smartDay(b.day)}else if(sortColumn==='code'){va=(a.code||'').toLowerCase();vb=(b.code||'').toLowerCase()}else if(sortColumn==='mobile'){va=(a.mobile||'').toLowerCase();vb=(b.mobile||'').toLowerCase()}else{va=smartDay(a.day);vb=smartDay(b.day)}if(va<vb)return sortDirection==='asc'?-1:1;if(va>vb)return sortDirection==='asc'?1:-1;return 0});tbody.innerHTML='';let tc=0,tm=0,sc=0;
-if(f.length===0){tbody.innerHTML=`<tr><td colspan="8"><div class="empty-state"><div class="empty-icon"><i class="ri-inbox-line"></i></div><h3>لا توجد نتائج</h3><p>ابدأ بإضافة عميل أو غيّر البحث</p></div></td></tr>`}else{f.forEach(c=>{const st=getStatus(c.day);if(st.s==='today')tc++;if(st.s==='tomorrow')tm++;if(st.s==='soon')sc++;const ch=selectedClients.has(c._i)?'checked':'';const pp=PLANS.find(p=>p.value===c.plan);const pd=pp?`${c.plan}<br><small style="color:var(--primary);font-weight:700;">${pp.price}</small>`:esc(c.plan||'-');const tr=document.createElement('tr');tr.className=`row-${st.s}`;tr.innerHTML=`<td><input type="checkbox" class="client-checkbox" data-index="${c._i}" ${ch}></td><td><span class="code-badge">${esc(c.code)}</span></td><td style="font-weight:700;">${esc(c.mobile||'-')}</td><td style="color:var(--text-2);font-size:0.86rem;">${esc(c.landline||'-')}</td><td><strong style="font-size:1.05rem;">${esc(c.day||'-')}</strong></td><td style="font-weight:600;">${pd}</td><td><span class="status-badge ${st.c}">${st.l}</span></td><td><div class="action-btns"><button class="btn btn-secondary btn-sm btn-icon" onclick="editClient(${c._i})" title="تعديل"><i class="ri-pencil-line"></i></button><button class="btn btn-info btn-sm btn-icon" onclick="showHistory(${c._i})" title="سجل العمليات"><i class="ri-history-line"></i></button><button class="btn btn-success btn-sm btn-icon" onclick="sendWA(${c._i})" title="واتساب"><i class="ri-chat-1-line"></i></button><button class="btn btn-danger btn-sm btn-icon" onclick="delClient(${c._i})" title="حذف"><i class="ri-delete-bin-line"></i></button></div></td>`;tbody.appendChild(tr)})}
+if(f.length===0){tbody.innerHTML=`<tr><td colspan="8"><div class="empty-state"><div class="empty-icon"><i class="ri-inbox-line"></i></div><h3>لا توجد نتائج</h3><p>ابدأ بإضافة عميل أو غيّر البحث</p></div></td></tr>`}else{f.forEach(c=>{const st=getStatus(c.day);if(st.s==='today')tc++;if(st.s==='tomorrow')tm++;if(st.s==='soon')sc++;const ch=selectedClients.has(c._i)?'checked':'';const pp=PLANS.find(p=>p.value===c.plan);const pd=pp?`${c.plan}<br><small style="color:var(--primary);font-weight:700;">${pp.price}</small>`:esc(c.plan||'-');let reqBtn='';if(c.requestedPlan||c.requestedExtra){reqBtn=`<button class="btn btn-warning btn-sm btn-icon" style="background:#f59e0b;color:#fff;" onclick="approveReq(${c._i})" title="تأكيد الطلب"><i class="ri-check-double-line"></i></button>`;}const tr=document.createElement('tr');tr.className=`row-${st.s}`;tr.innerHTML=`<td><input type="checkbox" class="client-checkbox" data-index="${c._i}" ${ch}></td><td style="color:var(--text-3);font-size:0.85rem;font-weight:700;">${esc(c.code)}</td><td style="font-weight:700;">${esc(c.mobile||'-')}</td><td style="font-weight:900;font-size:1.2rem;color:var(--primary);letter-spacing:1px;">${esc(c.landline||'-')}</td><td><strong style="font-size:1.05rem;">${esc(c.day||'-')}</strong></td><td style="font-weight:600;">${pd}</td><td><span class="status-badge ${st.c}">${st.l}</span></td><td><div class="action-btns">${reqBtn}<button class="btn btn-secondary btn-sm btn-icon" onclick="editClient(${c._i})" title="تعديل"><i class="ri-pencil-line"></i></button><button class="btn btn-info btn-sm btn-icon" onclick="showHistory(${c._i})" title="سجل العمليات"><i class="ri-history-line"></i></button><button class="btn btn-success btn-sm btn-icon" onclick="sendWA(${c._i})" title="واتساب"><i class="ri-chat-1-line"></i></button><button class="btn btn-danger btn-sm btn-icon" onclick="delClient(${c._i})" title="حذف"><i class="ri-delete-bin-line"></i></button></div></td>`;tbody.appendChild(tr)})}
 document.getElementById('totalStat').textContent=clients.length;document.getElementById('todayStat').textContent=tc;document.getElementById('tomorrowStat').textContent=tm;document.getElementById('soonStat').textContent=sc;document.getElementById('tableTitle').innerHTML=`<i class="ri-list-check"></i> إجمالي العملاء: ${clients.length}`;
 document.querySelectorAll('tbody .client-checkbox').forEach(cb=>{cb.addEventListener('change',function(){const i=parseInt(this.dataset.index);if(this.checked)selectedClients.add(i);else selectedClients.delete(i);updateSelUI();updateSelAll()})});updateSelAll();updateSortH()}
 
@@ -917,7 +963,7 @@ function nextQ(){if(!qActive)return;qIdx++;qOpened=false;if(qIdx>=queue.length){
 function compQ(){qActive=false;document.getElementById('queuePanel').classList.remove('active');document.getElementById('queueFill').style.width='100%';toast('تم الانتهاء من جميع الرسائل!','success');selectedClients.clear();updateSelUI();render()}
 function closeQ(){if(qActive&&qIdx<queue.length){if(!confirm('إيقاف؟'))return}qActive=false;document.getElementById('queuePanel').classList.remove('active')}
 function sendBulk(){if(!selectedClients.size){toast('حدد عملاء أولاً','warning');return}const l=Array.from(selectedClients).map(i=>clients[i]).filter(Boolean);window.open(`https://wa.me/${EMP_WA}?text=${encodeURIComponent(buildEmpMsg(l))}`,'_blank');toast(`تم إرسال ${l.length} عميل`,'success')}
-
+function approveReq(idx){const c=clients[idx];if(!c)return;let msg=`السلام عليكم ورحمة الله وبركاته،\n\nعزيزي العميل،`;let ch=false;if(c.requestedPlan){c.plan=c.requestedPlan;const p=PLANS.find(x=>x.value===c.plan);msg+=`\n✅ تمت الموافقة على طلبك وتفعيل باقة <b>${p?p.label:c.plan}</b> بنجاح!`;addHist(idx,'plan_approved',`الباقة: ${p?p.label:c.plan}`);delete c.requestedPlan;delete c.requestedPlanNote;ch=true;}if(c.requestedExtra){const ep=EXTRA_PLANS.find(x=>x.value===c.requestedExtra);msg+=`\n✅ تم إضافة السعة <b>${ep?ep.label:c.requestedExtra}</b> بنجاح!`;addHist(idx,'extra_approved',`السعة: ${ep?ep.label:c.requestedExtra}`);delete c.requestedExtra;delete c.requestedExtraNote;ch=true;}if(ch){save();render();toast('تم تأكيد الطلب بنجاح','success');if(c.tgChatId){sendBotMsg(c.tgChatId,msg);}}}
 function editClient(idx){editIndex=idx;const c=clients[idx],ctr=document.getElementById('clientFormsContainer');ctr.innerHTML=`<div class="client-form-block"><div class="form-grid"><div class="form-group"><label><i class="ri-hashtag"></i> رمز العميل</label><input class="codeInput" value="${esc(c.code)}" disabled></div><div class="form-group"><label><i class="ri-smartphone-line"></i> موبايل *</label><input class="mobileInput" type="tel" value="${esc(c.mobile||'')}"></div><div class="form-group"><label><i class="ri-phone-line"></i> أرضي</label><input class="landlineInput" type="tel" value="${esc(c.landline||'')}"></div><div class="form-group"><label><i class="ri-calendar-line"></i> يوم التجديد *</label><input class="dayInput" type="number" min="1" max="31" value="${esc(c.day||'')}"></div><div class="form-group" style="grid-column:span 2;"><label><i class="ri-box-3-line"></i> الباقة *</label><select class="planInput">${planOpts(c.plan)}</select></div><div class="form-group" style="grid-column:span 2;"><label><i class="ri-file-text-line"></i> ملاحظات</label><textarea class="notesInput" rows="3">${esc(c.notes||'')}</textarea></div></div></div>`;document.getElementById('modalTitle').innerHTML='<i class="ri-pencil-line"></i> تعديل بيانات العميل';document.getElementById('addMoreBtn').style.display='none';document.getElementById('clientModal').classList.add('show')}
 function delClient(idx){if(!confirm('حذف هذا العميل؟'))return;selectedClients.delete(idx);clients.splice(idx,1);const ns=new Set();selectedClients.forEach(i=>{if(i>idx)ns.add(i-1);else if(i<idx)ns.add(i)});selectedClients=ns;save();render();updateSelUI();toast('تم الحذف','success')}
 
@@ -956,9 +1002,9 @@ document.getElementById('themeBtn').onclick=()=>{document.documentElement.classL
 if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark');document.getElementById('themeBtn').innerHTML='<i class="ri-sun-line"></i> نهاري'}
 
 let cSelPlan=null;
-function buildPlanGrid(){const g=document.getElementById('clientPlanGrid');g.innerHTML='';PLANS.forEach(p=>{const d=document.createElement('div');d.className='plan-card';d.innerHTML=`<div class="pcheck"><i class="ri-checkbox-circle-line"></i></div><div class="pname">${p.label}</div><div class="pprice">${p.price}</div>`;d.onclick=()=>{document.querySelectorAll('.plan-card').forEach(x=>x.classList.remove('chosen'));d.classList.add('chosen');cSelPlan=p.value;const b=document.getElementById('clientRequestPlanBtn');b.disabled=false;b.style.opacity='1'};g.appendChild(d)})}
+function buildPlanGrid(){const g=document.getElementById('clientPlanGrid');g.innerHTML='';PLANS.forEach(p=>{const d=document.createElement('div');d.className='c-plan-card';let lbl=p.label;if(lbl.includes('+')){const pts=lbl.split('+');lbl=`${pts[0].trim()} + <span style="color:#10b981;">${pts[1].trim()} هدية</span>`;}d.innerHTML=`<div class="c-plan-name">${lbl}</div><div class="c-plan-price-row"><div class="c-plan-price">${p.price}</div></div><div class="c-plan-features"><div><i class="ri-check-line"></i> سرعة <span style="color:#7c3aed;font-weight:900;font-size:1.05rem;">30</span> ميجا</div><div><i class="ri-check-line"></i> باقة ${p.label}</div></div><button class="c-plan-btn" onclick="event.stopPropagation(); cSelPlan='${p.value}'; document.getElementById('clientRequestPlanBtn').disabled=false; document.getElementById('clientRequestPlanBtn').click();">طلب الباقة</button>`;g.appendChild(d)})}
 let cSelExtra=null;
-function buildExtraGrid(){const g=document.getElementById('clientExtraGrid');g.innerHTML='';EXTRA_PLANS.forEach(p=>{const d=document.createElement('div');d.className='extra-card';d.innerHTML=`<div class="echeck"><i class="ri-checkbox-circle-line"></i></div><div class="ename">${p.label}</div>${p.gift?`<div class="egift">${p.gift}</div>`:''}<div class="eprice">${p.price}</div>`;d.onclick=()=>{document.querySelectorAll('.extra-card').forEach(x=>x.classList.remove('chosen'));d.classList.add('chosen');cSelExtra=p.value;const b=document.getElementById('clientRequestExtraBtn');b.disabled=false;b.style.opacity='1'};g.appendChild(d)})}
+function buildExtraGrid(){const g=document.getElementById('clientExtraGrid');g.innerHTML='';EXTRA_PLANS.forEach(p=>{const d=document.createElement('div');d.className='c-plan-card extra-card-style';let lbl=p.label;if(p.gift){lbl=`${p.label} <span style="color:#7c3aed;">${p.gift}</span>`;}d.innerHTML=`<div class="c-plan-name">${lbl}</div><div class="c-plan-price-row"><div class="c-plan-price">${p.price}</div></div><div class="c-plan-features"><div><i class="ri-check-line"></i> سعة إضافية سريعة</div><div><i class="ri-check-line"></i> صالحة لمدة 30 يوم</div></div><button class="c-plan-btn" onclick="event.stopPropagation(); cSelExtra='${p.value}'; document.getElementById('clientRequestExtraBtn').disabled=false; document.getElementById('clientRequestExtraBtn').click();">إضافة</button>`;g.appendChild(d)})}
 
 function showConfirm(title,msg,onYes){const ex=document.querySelector('.confirm-overlay');if(ex)ex.remove();const ov=document.createElement('div');ov.className='confirm-overlay';ov.innerHTML=`<div class="confirm-box"><div class="confirm-icon"><i class="ri-error-warning-line"></i></div><div class="confirm-title">${title}</div><div class="confirm-msg">${msg}</div><div class="confirm-actions"><button class="btn btn-danger btn-sm" id="cfYes">نعم، إلغاء</button><button class="btn btn-secondary btn-sm" id="cfNo">تراجع</button></div></div>`;document.body.appendChild(ov);ov.addEventListener('click',e=>{if(e.target===ov)ov.remove()});document.getElementById('cfNo').onclick=()=>ov.remove();document.getElementById('cfYes').onclick=()=>{ov.remove();onYes()}}
 
@@ -968,11 +1014,11 @@ function showLogin(){document.getElementById('loginWrap').style.display='flex';d
 function showAdmin(){document.getElementById('loginWrap').style.display='none';document.getElementById('clientApp').style.display='none';document.getElementById('adminApp').style.display='block';render();updateReqBadge();if(clients.length>0){autoSel(false);render()}else setTimeout(()=>toast('مرحباً! ابدأ بإضافة عملاء','info'),600)}
 
 function showClient(ci){const c=clients[ci];if(!c){showLogin();return}document.getElementById('loginWrap').style.display='none';document.getElementById('adminApp').style.display='none';document.getElementById('clientApp').style.display='block';refreshCV(ci);document.getElementById('clientEditMobile').value=c.mobile||'';document.getElementById('clientEditDay').value=c.day||'';buildPlanGrid();cSelPlan=null;document.getElementById('clientRequestPlanBtn').disabled=true;document.getElementById('clientRequestPlanBtn').style.opacity='0.5';buildExtraGrid();cSelExtra=null;document.getElementById('clientRequestExtraBtn').disabled=true;document.getElementById('clientRequestExtraBtn').style.opacity='0.5';
-document.getElementById('clientSaveEditBtn').onclick=()=>{const nm=document.getElementById('clientEditMobile').value.trim(),nd=parseInt(document.getElementById('clientEditDay').value)||null;if(!nm){toast('أدخل رقم الموبايل','warning');return}let ch=[];if(clients[ci].mobile!==nm)ch.push(`الموبايل: ${clients[ci].mobile}→${nm}`);if(nd&&clients[ci].day!==nd)ch.push(`يوم: ${clients[ci].day}→${nd}`);clients[ci].mobile=nm;if(nd)clients[ci].day=nd;if(ch.length)addHist(ci,'data_edited',ch.join(' | '));save();toast('تم الحفظ','success');refreshCV(ci)};
-document.getElementById('clientRequestPlanBtn').onclick=()=>{if(!cSelPlan)return;clients[ci].requestedPlan=cSelPlan;const pl=PLANS.find(p=>p.value===cSelPlan);addHist(ci,'plan_requested',`المطلوبة: ${pl?pl.label+' — '+pl.price:cSelPlan}`);save();toast('تم إرسال الطلب','success');sendTG(`<b>طلب تغيير باقة</b>\nالكود: <b>${c.code}</b>\nالأرضي: ${c.landline||'-'}\nالحالية: ${planLbl(c.plan)}\nالمطلوبة: ${pl?pl.label+' — '+pl.price:cSelPlan}\nالتجديد: يوم ${c.day||'-'}`);refreshCV(ci);cSelPlan=null;document.querySelectorAll('.plan-card').forEach(d=>d.classList.remove('chosen'));document.getElementById('clientRequestPlanBtn').disabled=true;document.getElementById('clientRequestPlanBtn').style.opacity='0.5'};
-document.getElementById('clientRequestExtraBtn').onclick=()=>{if(!cSelExtra)return;clients[ci].requestedExtra=cSelExtra;const ep=EXTRA_PLANS.find(p=>p.value===cSelExtra);addHist(ci,'extra_requested',`الإضافية: ${ep?ep.label+(ep.gift?' '+ep.gift:'')+' — '+ep.price:cSelExtra}`);save();toast('تم إرسال الطلب','success');sendTG(`<b>طلب باقة إضافية</b>\nالكود: <b>${c.code}</b>\nالأرضي: ${c.landline||'-'}\nالأساسية: ${planLbl(c.plan)}\nالإضافية: ${ep?ep.label+(ep.gift?' '+ep.gift:'')+' — '+ep.price:cSelExtra}\nالتجديد: يوم ${c.day||'-'}`);refreshCV(ci);cSelExtra=null;document.querySelectorAll('.extra-card').forEach(d=>d.classList.remove('chosen'));document.getElementById('clientRequestExtraBtn').disabled=true;document.getElementById('clientRequestExtraBtn').style.opacity='0.5'};
-document.getElementById('cancelPlanRequestBtn').onclick=()=>{const cc=clients[ci];if(!cc||!cc.requestedPlan)return;const rp=PLANS.find(p=>p.value===cc.requestedPlan);showConfirm('إلغاء طلب تغيير الباقة',`إلغاء طلب "${rp?rp.label+' — '+rp.price:cc.requestedPlan}"?`,()=>{const lbl=rp?rp.label+(rp.price?' — '+rp.price:''):cc.requestedPlan;addHist(ci,'plan_request_cancelled',`تم إلغاء: ${lbl}`);delete cc.requestedPlan;save();sendTG(`<b>إلغاء طلب باقة</b>\nالأرضي: ${cc.landline||'-'}\nالملغية: ${lbl}`);refreshCV(ci);toast('تم الإلغاء','info')})};
-document.getElementById('cancelExtraRequestBtn').onclick=()=>{const cc=clients[ci];if(!cc||!cc.requestedExtra)return;const ep=EXTRA_PLANS.find(p=>p.value===cc.requestedExtra);showConfirm('إلغاء طلب الباقة الإضافية',`إلغاء طلب "${ep?ep.label+(ep.gift?' '+ep.gift:''):cc.requestedExtra}"?`,()=>{const lbl=ep?ep.label+(ep.gift?' '+ep.gift:'')+' — '+ep.price:cc.requestedExtra;addHist(ci,'extra_request_cancelled',`تم إلغاء: ${lbl}`);delete cc.requestedExtra;save();sendTG(`<b>إلغاء طلب إضافية</b>\nالأرضي: ${cc.landline||'-'}\nالملغية: ${lbl}`);refreshCV(ci);toast('تم الإلغاء','info')})}
+document.getElementById('clientSaveEditBtn').onclick=()=>{const nm=document.getElementById('clientEditMobile').value.trim(),nd=parseInt(document.getElementById('clientEditDay').value)||null;if(!nm){toast('أدخل رقم الموبايل','warning');return}let ch=[];if(clients[ci].mobile!==nm)ch.push(`الموبايل: ${clients[ci].mobile}→${nm}`);if(nd&&clients[ci].day!==nd)ch.push(`يوم التجديد: ${clients[ci].day} → ${nd}`);clients[ci].mobile=nm;if(nd)clients[ci].day=nd;if(ch.length){addHist(ci,'data_edited',ch.join(' | '));sendTG(`<b>تعديل بيانات العميل</b>\n\nالأرضي: ${clients[ci].landline||'-'}\nالتعديلات:\n${ch.join('\n')}`);}save();toast('تم الحفظ','success');refreshCV(ci)};
+document.getElementById('clientRequestPlanBtn').onclick=()=>{if(!cSelPlan)return;const nt=document.getElementById('clientRequestNote');const un=nt?nt.value:'';clients[ci].requestedPlan=cSelPlan;if(un.trim())clients[ci].requestedPlanNote=un.trim();else delete clients[ci].requestedPlanNote;const pl=PLANS.find(p=>p.value===cSelPlan);const cp=PLANS.find(p=>p.value===c.plan);let pName=pl?`${pl.label} (${pl.price})`:cSelPlan;let cName=cp?cp.label:(c.plan||'غير محدد');let rs=pName;if(un.trim())rs+=` (${un.trim()})`;addHist(ci,'plan_requested',`المطلوبة: ${rs}`);save();toast('تم إرسال الطلب','success');let tgMsg=`<b>طلب تغيير باقة</b>\n\nالأرضي: ${c.landline||'-'}\nمن: ${cName}\nإلى: ${pName}\nالتجديد: يوم ${c.day||'-'}`;if(un.trim())tgMsg+=`\nملاحظة: ${un.trim()}`;sendTG(tgMsg);if(nt)nt.value='';refreshCV(ci);cSelPlan=null;document.querySelectorAll('.plan-card').forEach(d=>d.classList.remove('chosen'));document.getElementById('clientRequestPlanBtn').disabled=true;document.getElementById('clientRequestPlanBtn').style.opacity='0.5'};
+document.getElementById('clientRequestExtraBtn').onclick=()=>{if(!cSelExtra)return;const nt=document.getElementById('clientRequestNote');const un=nt?nt.value:'';clients[ci].requestedExtra=cSelExtra;if(un.trim())clients[ci].requestedExtraNote=un.trim();else delete clients[ci].requestedExtraNote;const ep=EXTRA_PLANS.find(p=>p.value===cSelExtra);const cp=PLANS.find(p=>p.value===c.plan);let eName=ep?`${ep.label}${ep.gift?' '+ep.gift:''} (${ep.price})`:cSelExtra;let cName=cp?cp.label:(c.plan||'غير محدد');let rs=eName;if(un.trim())rs+=` (${un.trim()})`;addHist(ci,'extra_requested',`الإضافية: ${rs}`);save();toast('تم إرسال الطلب','success');let tgMsg=`<b>طلب باقة إضافية</b>\n\nالأرضي: ${c.landline||'-'}\nالأساسية: ${cName}\nالإضافية: ${eName}\nالتجديد: يوم ${c.day||'-'}`;if(un.trim())tgMsg+=`\nملاحظة: ${un.trim()}`;sendTG(tgMsg);if(nt)nt.value='';refreshCV(ci);cSelExtra=null;document.querySelectorAll('.extra-card').forEach(d=>d.classList.remove('chosen'));document.getElementById('clientRequestExtraBtn').disabled=true;document.getElementById('clientRequestExtraBtn').style.opacity='0.5'};
+document.getElementById('cancelPlanRequestBtn').onclick=()=>{const cc=clients[ci];if(!cc||!cc.requestedPlan)return;const rp=PLANS.find(p=>p.value===cc.requestedPlan);showConfirm('إلغاء طلب تغيير الباقة',`إلغاء طلب "${rp?rp.label+' — '+rp.price:cc.requestedPlan}"?`,()=>{const lbl=rp?rp.label+(rp.price?' — '+rp.price:''):cc.requestedPlan;addHist(ci,'plan_request_cancelled',`تم إلغاء: ${lbl}`);delete cc.requestedPlan;delete cc.requestedPlanNote;save();sendTG(`<b>إلغاء طلب باقة</b>\n\nالأرضي: ${cc.landline||'-'}\nالملغية: ${lbl}`);refreshCV(ci);toast('تم الإلغاء','info')})};
+document.getElementById('cancelExtraRequestBtn').onclick=()=>{const cc=clients[ci];if(!cc||!cc.requestedExtra)return;const ep=EXTRA_PLANS.find(p=>p.value===cc.requestedExtra);showConfirm('إلغاء طلب الباقة الإضافية',`إلغاء طلب "${ep?ep.label+(ep.gift?' '+ep.gift:''):cc.requestedExtra}"?`,()=>{const lbl=ep?ep.label+(ep.gift?' '+ep.gift:'')+' — '+ep.price:cc.requestedExtra;addHist(ci,'extra_request_cancelled',`تم إلغاء: ${lbl}`);delete cc.requestedExtra;delete cc.requestedExtraNote;save();sendTG(`<b>إلغاء طلب إضافية</b>\n\nالأرضي: ${cc.landline||'-'}\nالملغية: ${lbl}`);refreshCV(ci);toast('تم الإلغاء','info')})}
 }
 
 function logout(){localStorage.removeItem('currentRole');localStorage.removeItem('currentClientIdx');document.getElementById('loginUsername').value='';document.getElementById('loginPassword').value='';showLogin()}
@@ -985,12 +1031,12 @@ document.getElementById('clientLogoutBtn').onclick=logout;
 function updateReqBadge(){const n=clients.filter(c=>c.requestedPlan||c.requestedExtra).length;const b=document.getElementById('reqBadge');if(n>0){b.textContent=n;b.classList.remove('hidden')}else b.classList.add('hidden')}
 function extraLbl(v){const p=EXTRA_PLANS.find(p=>p.value===v);return p?`${p.label}${p.gift?' '+p.gift:''} — ${p.price}`:(v||'-')}
 
-function showReqModal(){const list=document.getElementById('requestsList'),pr=clients.map((c,i)=>({...c,_i:i})).filter(c=>c.requestedPlan),er=clients.map((c,i)=>({...c,_i:i})).filter(c=>c.requestedExtra);if(!pr.length&&!er.length){list.innerHTML='<div class="empty-state"><div class="empty-icon"><i class="ri-checkbox-circle-line"></i></div><h3>لا توجد طلبات</h3><p>جميع العملاء راضون</p></div>'}else{let h='';if(pr.length){h+=`<h4 style="font-weight:800;color:var(--primary);margin-bottom:8px;font-size:0.92rem;"><i class="ri-refresh-line"></i> تغيير باقة (${pr.length})</h4>`;pr.forEach(c=>{const cp=PLANS.find(p=>p.value===c.plan),rp=PLANS.find(p=>p.value===c.requestedPlan);h+=`<div class="request-item"><div class="ri-header"><div><span class="ri-type-badge ri-type-plan"><i class="ri-refresh-line" style="font-size:0.65rem;"></i> تغيير</span><span class="code-badge">${esc(c.code)}</span><div class="ri-landline"><i class="ri-phone-line" style="font-size:0.8rem;"></i> ${esc(c.landline||'-')} | ${esc(c.mobile||'-')}</div></div></div><div class="ri-plans"><span>${cp?cp.label+' — '+cp.price:(c.plan||'غير محدد')}</span><span class="ri-arrow">→</span><span style="color:var(--primary);font-weight:800;">${rp?rp.label+' — '+rp.price:c.requestedPlan}</span></div><div class="ri-actions"><button class="btn btn-success btn-sm" onclick="appReq(${c._i})"><i class="ri-check-line"></i> موافقة</button><button class="btn btn-danger btn-sm" onclick="rejReq(${c._i})"><i class="ri-close-line"></i> رفض</button></div></div>`})}if(er.length){h+=`<h4 style="font-weight:800;color:var(--success);margin:14px 0 8px;font-size:0.92rem;"><i class="ri-add-circle-line"></i> باقات إضافية (${er.length})</h4>`;er.forEach(c=>{const ep=EXTRA_PLANS.find(p=>p.value===c.requestedExtra);h+=`<div class="request-item"><div class="ri-header"><div><span class="ri-type-badge ri-type-extra"><i class="ri-add-line" style="font-size:0.65rem;"></i> إضافية</span><span class="code-badge">${esc(c.code)}</span><div class="ri-landline"><i class="ri-phone-line" style="font-size:0.8rem;"></i> ${esc(c.landline||'-')} | ${esc(c.mobile||'-')}</div></div></div><div class="ri-plans"><span>الأساسية: ${planLbl(c.plan)}</span></div><div class="ri-plans" style="margin-top:-4px;"><span style="color:var(--success);font-weight:800;">الإضافية: ${ep?ep.label+(ep.gift?' '+ep.gift:'')+' — '+ep.price:c.requestedExtra}</span></div><div class="ri-actions"><button class="btn btn-success btn-sm" onclick="appExtra(${c._i})"><i class="ri-check-line"></i> موافقة</button><button class="btn btn-danger btn-sm" onclick="rejExtra(${c._i})"><i class="ri-close-line"></i> رفض</button></div></div>`})}list.innerHTML=h}document.getElementById('requestsModal').classList.add('show')}
+function showReqModal(){const list=document.getElementById('requestsList'),pr=clients.map((c,i)=>({...c,_i:i})).filter(c=>c.requestedPlan),er=clients.map((c,i)=>({...c,_i:i})).filter(c=>c.requestedExtra);if(!pr.length&&!er.length){list.innerHTML='<div class="empty-state"><div class="empty-icon"><i class="ri-checkbox-circle-line"></i></div><h3>لا توجد طلبات</h3><p>جميع العملاء راضون</p></div>'}else{let h='';if(pr.length){h+=`<h4 style="font-weight:800;color:var(--primary);margin-bottom:8px;font-size:0.92rem;"><i class="ri-refresh-line"></i> تغيير باقة (${pr.length})</h4>`;pr.forEach(c=>{const cp=PLANS.find(p=>p.value===c.plan),rp=PLANS.find(p=>p.value===c.requestedPlan);const ns=c.requestedPlanNote?` <span style="color:#718096;font-size:0.8rem;font-weight:700;">(${esc(c.requestedPlanNote)})</span>`:'';h+=`<div class="request-item"><div class="ri-header"><div><span class="ri-type-badge ri-type-plan"><i class="ri-refresh-line" style="font-size:0.65rem;"></i> تغيير</span><span class="code-badge">${esc(c.code)}</span><div class="ri-landline"><i class="ri-phone-line" style="font-size:0.8rem;"></i> ${esc(c.landline||'-')} | ${esc(c.mobile||'-')}</div></div></div><div class="ri-plans"><span>${cp?cp.label+' — '+cp.price:(c.plan||'غير محدد')}</span><span class="ri-arrow">→</span><span style="color:var(--primary);font-weight:800;">${rp?rp.label+' — '+rp.price:c.requestedPlan}</span>${ns}</div><div class="ri-actions"><button class="btn btn-success btn-sm" onclick="appReq(${c._i})"><i class="ri-check-line"></i> موافقة</button><button class="btn btn-danger btn-sm" onclick="rejReq(${c._i})"><i class="ri-close-line"></i> رفض</button></div></div>`})}if(er.length){h+=`<h4 style="font-weight:800;color:var(--success);margin:14px 0 8px;font-size:0.92rem;"><i class="ri-add-circle-line"></i> باقات إضافية (${er.length})</h4>`;er.forEach(c=>{const ep=EXTRA_PLANS.find(p=>p.value===c.requestedExtra);const ns=c.requestedExtraNote?` <span style="color:#718096;font-size:0.8rem;font-weight:700;">(${esc(c.requestedExtraNote)})</span>`:'';h+=`<div class="request-item"><div class="ri-header"><div><span class="ri-type-badge ri-type-extra"><i class="ri-add-line" style="font-size:0.65rem;"></i> إضافية</span><span class="code-badge">${esc(c.code)}</span><div class="ri-landline"><i class="ri-phone-line" style="font-size:0.8rem;"></i> ${esc(c.landline||'-')} | ${esc(c.mobile||'-')}</div></div></div><div class="ri-plans"><span>الأساسية: ${planLbl(c.plan)}</span></div><div class="ri-plans" style="margin-top:-4px;"><span style="color:var(--success);font-weight:800;">الإضافية: ${ep?ep.label+(ep.gift?' '+ep.gift:'')+' — '+ep.price:c.requestedExtra}</span>${ns}</div><div class="ri-actions"><button class="btn btn-success btn-sm" onclick="appExtra(${c._i})"><i class="ri-check-line"></i> موافقة</button><button class="btn btn-danger btn-sm" onclick="rejExtra(${c._i})"><i class="ri-close-line"></i> رفض</button></div></div>`})}list.innerHTML=h}document.getElementById('requestsModal').classList.add('show')}
 
-function appReq(i){const c=clients[i];if(!c||!c.requestedPlan)return;const o=c.plan,n=c.requestedPlan;c.plan=n;delete c.requestedPlan;addHist(i,'plan_approved',`${planLbl(o)} → ${planLbl(n)}`);save();render();showReqModal();updateReqBadge();toast('تم تغيير الباقة','success')}
-function rejReq(i){const c=clients[i];if(!c)return;addHist(i,'plan_rejected',`تم رفض: ${planLbl(c.requestedPlan)}`);delete c.requestedPlan;save();render();showReqModal();updateReqBadge();toast('تم الرفض','info')}
-function appExtra(i){const c=clients[i];if(!c||!c.requestedExtra)return;if(!c.activeExtras)c.activeExtras=[];c.activeExtras.push({package:c.requestedExtra,date:new Date().toISOString().split('T')[0]});addHist(i,'extra_approved',`تمت الموافقة: ${extraLbl(c.requestedExtra)}`);delete c.requestedExtra;save();render();showReqModal();updateReqBadge();toast('تمت الموافقة','success')}
-function rejExtra(i){const c=clients[i];if(!c)return;addHist(i,'extra_rejected',`تم رفض: ${extraLbl(c.requestedExtra)}`);delete c.requestedExtra;save();render();showReqModal();updateReqBadge();toast('تم الرفض','info')}
+function appReq(i){const c=clients[i];if(!c||!c.requestedPlan)return;const o=c.plan,n=c.requestedPlan;c.plan=n;delete c.requestedPlan;delete c.requestedPlanNote;addHist(i,'plan_approved',`${planLbl(o)} → ${planLbl(n)}`);save();render();showReqModal();updateReqBadge();toast('تم تغيير الباقة','success')}
+function rejReq(i){const c=clients[i];if(!c)return;addHist(i,'plan_rejected',`تم رفض: ${planLbl(c.requestedPlan)}`);delete c.requestedPlan;delete c.requestedPlanNote;save();render();showReqModal();updateReqBadge();toast('تم الرفض','info')}
+function appExtra(i){const c=clients[i];if(!c||!c.requestedExtra)return;if(!c.activeExtras)c.activeExtras=[];c.activeExtras.push({package:c.requestedExtra,date:new Date().toISOString().split('T')[0]});addHist(i,'extra_approved',`تمت الموافقة: ${extraLbl(c.requestedExtra)}`);delete c.requestedExtra;delete c.requestedExtraNote;save();render();showReqModal();updateReqBadge();toast('تمت الموافقة','success')}
+function rejExtra(i){const c=clients[i];if(!c)return;addHist(i,'extra_rejected',`تم رفض: ${extraLbl(c.requestedExtra)}`);delete c.requestedExtra;delete c.requestedExtraNote;save();render();showReqModal();updateReqBadge();toast('تم الرفض','info')}
 document.getElementById('requestsBtn').onclick=showReqModal;
 document.getElementById('closeRequestsModal').onclick=()=>document.getElementById('requestsModal').classList.remove('show');
 
